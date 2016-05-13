@@ -1,5 +1,7 @@
 # sources
 
+http://repos.wenzhixin.net.cn
+
 #jQuery side menu (测边菜单)
 https://github.com/wenzhixin/side-menu.git
 
