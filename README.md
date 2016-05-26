@@ -22,3 +22,6 @@ http://www.iconfont.cn/?spm=a313x.7781069.1998698872.1.iX1AKY
 
 #BootStrap CDN
 http://www.bootcdn.cn/
+
+#fontawesome webfont
+http://fontawesome.dashgame.com/
