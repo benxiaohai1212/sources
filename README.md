@@ -16,3 +16,6 @@ https://github.com/wenzhixin/jsonrpc.git
 
 #jquery-i18n-properties
 https://github.com/jquery-i18n-properties/jquery-i18n-properties.git
+
+#阿里webfont平台
+http://www.iconfont.cn/?spm=a313x.7781069.1998698872.1.iX1AKY
