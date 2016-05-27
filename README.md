@@ -14,6 +14,9 @@ https://github.com/wenzhixin/imagebox.git
 #JSONRpc for jQuery plugin 
 https://github.com/wenzhixin/jsonrpc.git
 
+#BootStrap-menu
+http://wenzhixin.net.cn/p/bootstrap-menu/
+
 #jquery-i18n-properties
 https://github.com/jquery-i18n-properties/jquery-i18n-properties.git
 
