@@ -1,9 +1,9 @@
 ## 一、环境规划
-  服务器IP：10.10.10.26 
-  操作系统：Ubuntu 14.04 
-  DNS程序：Bind9 
-  测试域名：dev.ecloud.com.cn 
-  目标IP：10.10.10.6;10.10.10.19 
+  服务器IP：10.10.10.26  
+  操作系统：Ubuntu 14.04  
+  DNS程序：Bind9  
+  测试域名：dev.ecloud.com.cn  
+  目标IP：10.10.10.6;10.10.10.19  
 
 ## 二、安装配置
 
@@ -95,5 +95,5 @@
     到此位置DNS就配置完成了。
 
 三、客户端DNS配置
-  编辑：Sudo vi /etc/resolv.conf 
+  编辑：Sudo vi /etc/resolv.conf  
   nameserver 10.10.10.26（添加DNS服务地址，无需重启）
