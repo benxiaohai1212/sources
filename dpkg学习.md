@@ -16,7 +16,10 @@ dpkg --force-all --purge ###有些软件很难卸载，而且还阻止了别的�
 ```
 更多选项可通过 dpkg -h 查询，有些指令需要超级用户权限才能执行，故执行时，一般需 在dpkg 前加sudo （例：sudo dpkg -i package.deb）。
 
-dpkg配置及缓存信息：系统中所有的包信息都在/var/lib/dpkg下.其中/var/lib/dpkg/info目录中保存了各个软件包的信息及管理文件. 提供这些信息仅供了解，一般不需要更改。
+dpkg配置及缓存信息：  
+系统中所有的包信息都在/var/lib/dpkg下.  
+其中/var/lib/dpkg/info目录中保存了各个软件包的信息及管理文件.   
+提供这些信息仅供了解，一般不需要更改。
 
 每个文件的作用如下:  
 ".conffiles" 文件记录软件包的配置列表.  
