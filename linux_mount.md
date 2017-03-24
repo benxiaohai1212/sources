@@ -130,40 +130,41 @@
 			Device Boot Start End Blocks Id System
 			/dev/hdd1 1 267350 2147482623+ ee EFI GPT
 
-	五、fdisk分区后如果在用parted分区会报错
-	  	1、错误：
-	  		[root@slave02 ~]# parted /dev/sdb
-	 		GNU Parted 2.1
-	 		使用 /dev/sdb
-	 		Welcome to GNU Parted! Type 'help' to view a list of commands.
-	 		(parted) mkpart
-	 		分区类型？  primary/主分区/extended/扩展分区? ^C                          
-	 		错误: 需要分区类型。
-	 		(parted) quit 
-
-	 	2、解决：
-	 		[root@slave02 /]# parted /dev/sdb
-	 		GNU Parted 2.1
-	 		使用 /dev/sdb
-	 		Welcome to GNU Parted! Type 'help' to view a list of commands.
-	 		(parted) mkpart                                                           
-	 		分区类型？  primary/主分区/extended/扩展分区? ^C                          
-	 		错误: 需要分区类型。
-	 		(parted) mklabel gpt                                                     
-	 		警告: The existing disk label on /dev/sdc will be destroyed and all data on this disk will be lost. Do you want to continue?
-	 		是/Yes/否/No? yes                                                         
-	 		(parted) mkpart                                                           
-	 		分区名称？  []?                                                           
-	 		文件系统类型？  [ext2]? ext4                                              
-	 		起始点？ 0                                                             
-	 		结束点？ 4000G                                                            
-	 		警告: The resulting partition is not properly aligned for best performance.
-	 		忽略/Ignore/放弃/Cancel? I                                                
-	 		(parted) quit                                                             
-	 		信息: You may need to update /etc/fstab. 
-
-  六、格式化
+  五、格式化
 
   	1、mkfs.ext4 /dev/sdb1
   	2、格式化大硬盘
   	   mkfs.ext4 -T largefile /dev/sdb1
+
+### fdisk分区后如果在用parted分区会报错
+
+  	1、错误：
+  		[root@slave02 ~]# parted /dev/sdb
+ 		GNU Parted 2.1
+ 		使用 /dev/sdb
+ 		Welcome to GNU Parted! Type 'help' to view a list of commands.
+ 		(parted) mkpart
+ 		分区类型？  primary/主分区/extended/扩展分区? ^C                          
+ 		错误: 需要分区类型。
+ 		(parted) quit 
+
+ 	2、解决：
+ 		[root@slave02 /]# parted /dev/sdb
+ 		GNU Parted 2.1
+ 		使用 /dev/sdb
+ 		Welcome to GNU Parted! Type 'help' to view a list of commands.
+ 		(parted) mkpart                                                           
+ 		分区类型？  primary/主分区/extended/扩展分区? ^C                          
+ 		错误: 需要分区类型。
+ 		(parted) mklabel gpt                                                     
+ 		警告: The existing disk label on /dev/sdc will be destroyed and all data on this disk will be lost. Do you want to continue?
+ 		是/Yes/否/No? yes                                                         
+ 		(parted) mkpart                                                           
+ 		分区名称？  []?                                                           
+ 		文件系统类型？  [ext2]? ext4                                              
+ 		起始点？ 0                                                             
+ 		结束点？ 4000G                                                            
+ 		警告: The resulting partition is not properly aligned for best performance.
+ 		忽略/Ignore/放弃/Cancel? I                                                
+ 		(parted) quit                                                             
+ 		信息: You may need to update /etc/fstab.
