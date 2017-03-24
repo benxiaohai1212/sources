@@ -46,22 +46,22 @@
 
 	三、操作命令：
 
-		检查 MINOR                           #对文件系统进行一个简单的检查 
-		cp [FROM-DEVICE] FROM-MINOR TO-MINOR #将文件系统复制到另一个分区 
-		help [COMMAND]                       #打印通用求助信息，或关于 COMMAND 的信息 
-		mklabel 标签类型                      #创建新的磁盘标签 (分区表) 
-		mkfs MINOR 文件系统类型               #在 MINOR 创建类型为“文件系统类型”的文件系统 
-		mkpart 分区类型 [文件系统类型] 起始点 终止点    #创建一个分区 
-		mkpartfs 分区类型 文件系统类型 起始点 终止点    #创建一个带有文件系统的分区 
-		move MINOR 起始点 终止点              #移动编号为 MINOR 的分区 
-		name MINOR 名称                      #将编号为 MINOR 的分区命名为“名称” 
-		print [MINOR]                        #打印分区表，或者分区 
-		quit                                 #退出程序 
-		rescue 起始点 终止点                  #挽救临近“起始点”、“终止点”的遗失的分区 
-		resize MINOR 起始点 终止点            #改变位于编号为 MINOR 的分区中文件系统的大小 
-		rm MINOR                             #删除编号为 MINOR 的分区 
-		select 设备                          #选择要编辑的设备 
-		set MINOR 标志 状态                   #改变编号为 MINOR 的分区的标志
+		检查 MINOR                           		#对文件系统进行一个简单的检查 
+		cp [FROM-DEVICE] FROM-MINOR TO-MINOR 		#将文件系统复制到另一个分区 
+		help [COMMAND]                       		#打印通用求助信息，或关于 COMMAND 的信息 
+		mklabel 标签类型                      		#创建新的磁盘标签 (分区表) 
+		mkfs MINOR 文件系统类型               		#在 MINOR 创建类型为“文件系统类型”的文件系统 
+		mkpart 分区类型 [文件系统类型] 起始点 终止点    	#创建一个分区 
+		mkpartfs 分区类型 文件系统类型 起始点 终止点    	#创建一个带有文件系统的分区 
+		move MINOR 起始点 终止点              		#移动编号为 MINOR 的分区 
+		name MINOR 名称                      		#将编号为 MINOR 的分区命名为“名称” 
+		print [MINOR]                        		#打印分区表，或者分区 
+		quit                                 		#退出程序 
+		rescue 起始点 终止点                  		#挽救临近“起始点”、“终止点”的遗失的分区 
+		resize MINOR 起始点 终止点            		#改变位于编号为 MINOR 的分区中文件系统的大小 
+		rm MINOR                             		#删除编号为 MINOR 的分区 
+		select 设备                          		#选择要编辑的设备 
+		set MINOR 标志 状态                   		#改变编号为 MINOR 的分区的标志
 
 	四、操作实例：
 		1、首先类似fdisk一样，先选择要分区的硬盘，此处为/dev/hdd：
