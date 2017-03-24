@@ -44,7 +44,8 @@
 		-s, --script                  从不提示用户 
 		-v, --version                 显示版本
 
-  三、操作命令：
+	三、操作命令：
+
 		检查 MINOR                           #对文件系统进行一个简单的检查 
 		cp [FROM-DEVICE] FROM-MINOR TO-MINOR #将文件系统复制到另一个分区 
 		help [COMMAND]                       #打印通用求助信息，或关于 COMMAND 的信息 
@@ -162,6 +163,7 @@
 	 		信息: You may need to update /etc/fstab. 
 
   六、格式化
+
   	1、mkfs.ext4 /dev/sdb1
   	2、格式化大硬盘
   	   mkfs.ext4 -T largefile /dev/sdb1
