@@ -1,7 +1,9 @@
 install BitBucket
-1、 基础环境
-1)、 jdk
-2)、 mysql
+
+1、  基础环境 
+
+* 1)、  jdk 
+* 2)、  mysql 
 
 2、 为Bitbucket建立数据库
 
