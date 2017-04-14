@@ -4,7 +4,7 @@
  ```ruby
 git config --global user.name <name> 		//设置提交者名字  
 git config --global user.email <email> 		//设置提交者邮箱  
-git config --global core.editor <editor> 		//设置默认文本编辑器  
+git config --global core.editor <editor> 	//设置默认文本编辑器  
 git config --global merge.tool <tool> 		//设置解决合并冲突时差异分析工具  
 git config --list 					//检查已有的配置信息 
 ```
@@ -52,15 +52,16 @@ git revert <commitID> 				//撤消指定的提交
  ```
  ### git查看历史
  ```ruby
-git log 						//查看提交历史  
-git log -p <file> 					//查看指定文件的提交历史  
-git blame <file> 					//以列表方式查看指定文件的提交历史  
-git log <branch> 				//查看某分支历史纪录  
-git log --all 					//查看所有分支历史纪录  
-git branch -v 					//每个分支最后的提交 
+git log 			//查看提交历史  
+git log -p <file> 		//查看指定文件的提交历史  
+git blame <file> 		//以列表方式查看指定文件的提交历史  
+git log <branch>		//查看某分支历史纪录  
+git log --all 		//查看所有分支历史纪录  
+git branch -v 		//每个分支最后的提交 
  ```
  
 项目中需要加入 文件“.gitignore”
+```txt
 .gitigone 内容类似如下内容
 target/
 .settings/
@@ -69,3 +70,4 @@ target/
 bin/
 .idea/
 *.iml
+```
