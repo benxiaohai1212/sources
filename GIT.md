@@ -6,7 +6,7 @@ git config --global user.name <name> 		//设置提交者名字
 git config --global user.email <email> 		//设置提交者邮箱  
 git config --global core.editor <editor> 	//设置默认文本编辑器  
 git config --global merge.tool <tool> 		//设置解决合并冲突时差异分析工具  
-git config --list 					//检查已有的配置信息 
+git config --list 				//检查已有的配置信息 
 ```
 ### 经常使用命令
 ```ruby
@@ -60,7 +60,7 @@ git log --all   		//查看所有分支历史纪录
 git branch -v   		//每个分支最后的提交 
  ```
  
-项目中需要加入 文件“.gitignore”
+### 项目中需要加入 文件“.gitignore”
 .gitigone 内容类似如下内容
 ```txt
 target/
