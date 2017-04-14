@@ -10,12 +10,12 @@ git config --list 					//检查已有的配置信息
 ```
 ### 经常使用命令
 ```ruby
-git init 						// 初始化
-git add file | directory 				// 添加文件或目录
-git commit -m "message"			// 提交
-git pull 						// 获取代码
+git init 					// 初始化
+git add file | directory 			// 添加文件或目录
+git commit -m "message"				// 提交
+git pull 					// 获取代码
 git fetch					//命令将提交从远程仓库导入到你的本地仓库
-git diff file file > fileName.txt			// 比较本地与线上版本差别输出fileName.txt
+git diff file file > fileName.txt		// 比较本地与线上版本差别输出fileName.txt
 git status					// 查看当前项目状态
 git push					// 提交代码到远程
  ```
@@ -29,14 +29,14 @@ git remote add origin <url> 			// 为git项目添加远程地址
  ### 分支与标签 
 ```bash
 git branch -a 					//显示所有本地分支  
-git checkout <branch/tagname> 		//切换到指定分支或标签  
+git checkout <branch/tagname>			//切换到指定分支或标签  
 git branch <new-branch> 			//创建新分支  
 git branch -d <branch> 				//删除本地分支  
 git tag -a 					//列出所有本地标签  
 git tag <tagname> 				//基于最新提交创建标签  
 git tag -d <tagname> 				//删除标签  
-git push --tags 					//上传所有标签
-git push origin --delete <branchName>   		//除一个远程分支  
+git push --tags 				//上传所有标签
+git push origin --delete <branchName>   	//除一个远程分支  
  ```
  ### 删除缓存和合并分之
  ```bash
@@ -56,13 +56,13 @@ git log 			//查看提交历史
 git log -p <file> 		//查看指定文件的提交历史  
 git blame <file> 		//以列表方式查看指定文件的提交历史  
 git log <branch>		//查看某分支历史纪录  
-git log --all 		//查看所有分支历史纪录  
-git branch -v 		//每个分支最后的提交 
+git log --all   		//查看所有分支历史纪录  
+git branch -v   		//每个分支最后的提交 
  ```
  
 项目中需要加入 文件“.gitignore”
-```txt
 .gitigone 内容类似如下内容
+```txt
 target/
 .settings/
 .project
