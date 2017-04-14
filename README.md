@@ -28,3 +28,15 @@ http://www.bootcdn.cn/
 
 #fontawesome webfont
 http://fontawesome.dashgame.com/
+
+# DNS配置
+https://github.com/benxiaohai1212/sources/blob/master/DNS%E9%85%8D%E7%BD%AE.md
+
+# apt 学习
+https://github.com/benxiaohai1212/sources/blob/master/atp%20%E5%AD%A6%E4%B9%A0.md
+
+# Linux Ubuntu 下格式化盘并挂载
+https://github.com/benxiaohai1212/sources/blob/master/linux_mount.md
+
+#GIT常用命令
+https://github.com/benxiaohai1212/sources/blob/master/GIT%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.md
