@@ -27,3 +27,5 @@
 [Linux Ubuntu 下格式化盘并挂载](https://github.com/benxiaohai1212/sources/blob/master/linux_mount.md)
 
 [GIT常用命令](https://github.com/benxiaohai1212/sources/blob/master/GIT%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4.md)
+
+[Linux命令大全](http://man.linuxde.net/)
