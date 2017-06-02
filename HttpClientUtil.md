@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
 public class HttpClientUtil {
 
 	private RequestConfig requestConfig;
@@ -208,4 +207,26 @@ public class HttpClientUtil {
 			<artifactId>httpmime</artifactId>
 			<version>4.5.1</version>
 		</dependency>
+```
+### 使用测试类
+```java
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+public class HttpClientTest {
+
+    public static void main(String args[]) throws UnsupportedEncodingException {
+        Map<String,String> map = new HashMap<String,String>();
+        String filePath = "ceshi/";
+        map.put("filePath",filePath);
+        map.put("sourceBucketName","user");
+        File file = new File("/home/tomhat/Git-2.11.0-64-bit.exe");
+        String res = HttpClientUtil.getInstance((int)file.length()/1000).
+                sendHttpPost1("http://xxx.xxx.xxx.xxx:xx/upload_file_by_file.json",map,file);
+//        String res = HttpClientUtil.getInstance().sendHttpPost("http://xxx.xxx.xxx.xxx:xx/list_buckets.json");
+    }    
+}
 ```
