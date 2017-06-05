@@ -1,5 +1,5 @@
 jenkins配置chef部署项目时报错汇总：
-1、删除node，client
+ * 1、删除node，client
 ```bash
 knife node delete <node-name>
 knife client delete <node-name>
@@ -33,6 +33,13 @@ hbyt.server02.test.ecloud.com.cn Chef Client failed. 0 resources updated in 1.56
 hbyt.server02.test.ecloud.com.cn [2017-06-05T20:01:53+08:00] FATAL: Stacktrace dumped to /var/chef/cache/chef-stacktrace.out
 hbyt.server02.test.ecloud.com.cn [2017-06-05T20:01:53+08:00] ERROR: 400 "Bad Request"
 hbyt.server02.test.ecloud.com.cn [2017-06-05T20:01:53+08:00] FATAL: Chef::Exceptions::ChildConvergeError: Chef run process exited unsuccessfully (exit code 1)
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE
+```
+ * 2、检查节点主机是否启动
+ ```bash
+Connecting to hbyt.server02.test.ecloud.com.cn
+ERROR: Net::SSH::Disconnect: connection closed by remote host
 Build step 'Execute shell' marked build as failure
 Finished: FAILURE
 ```
