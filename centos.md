@@ -72,8 +72,9 @@ service autoAPI.sh does not support chkconfig
    
 /usr/local/tomcat/bin/startup.sh
 ```
- * 6、查看启动列表
+ * 6、查看开机自启动列表
 ```bash
+[root@host-10-1-27-99 init.d]# chkconfig autoAPI.sh on
 [root@host-10-1-27-99 init.d]# chkconfig --list
 
 Note: This output shows SysV services only and does not include native
