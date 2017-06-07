@@ -118,7 +118,7 @@ autoAPI.sh     	0:off	1:off	2:on	3:on	4:on	5:on	6:off
     vi /etc/init.d/tomcatStart  
 ```
 ```bash
-    TOMCAT_HOME="/opt/tomcat7/bin"    
+    TOMCAT_HOME="/usr/local/tomcat/bin"    
     export JAVA_HOME=/opt/jdk1.7.0_45    
     echo "$ --- 1 =  $1"    
     case $1 in    
