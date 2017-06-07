@@ -1,4 +1,4 @@
-### 1、设置脚本自动启动
+### 1、centos设置tomcat开机自启动
  今天设置tomcat自动启动，服务器是centos;我做了如下步骤：
  
  * 1、写一个脚本 autoAPI.sh
@@ -87,4 +87,69 @@ Note: This output shows SysV services only and does not include native
 
 autoAPI.sh     	0:off	1:off	2:on	3:on	4:on	5:on	6:off
 
+```
+### 2、ubuntu设置tomcat开机自启动
+### 方法一：
+```bash
+  vi /etc/rc.local  
+```
+添加如下一行
+```bash
+  /usr/local/tomcat/bin/startup.sh  
+```
+（脚本绝对路径）
+注意：要添加在exit 0上边，reboot试试。
+
+### 方法二：
+
+1、安装 sysv-rc-conf
+```bash
+    apt-get install sysv-rc-conf  
+```
+
+2、 在 /etc/ini.d/ 目录下，
+2.1 新建文件：
+```bash
+    touch tomcatStart  
+```
+
+2.2 编辑脚本：
+```bash
+    vi /etc/init.d/tomcatStart  
+```
+```bash
+    TOMCAT_HOME="/opt/tomcat7/bin"    
+    export JAVA_HOME=/opt/jdk1.7.0_45    
+    echo "$ --- 1 =  $1"    
+    case $1 in    
+        startup)    
+            sh $TOMCAT_HOME/startup.sh    
+            ;;    
+        shutdown)    
+            sh $TOMCAT_HOME/shutdown.sh    
+            ;;    
+        restart)    
+            sh $TOMCAT_HOME/shutdown.sh    
+            sh $TOMCAT_HOME/startup.sh    
+            ;;    
+        *)    
+            sh $TOMCAT_HOME/startup.sh    
+            ;;    
+    esac    
+    exit 0   
+```
+
+2.3 添加执行权限
+```bash
+    chmod +x tomcatStart  
+```
+
+3、 启动tomcatStart
+```bash
+    sysv-rc-conf tomcatStart on  
+```
+
+4、若取消 tomcatControl自动启动服务，输入：
+```bash
+    sysv-rc-conf tomcatStart off  
 ```
