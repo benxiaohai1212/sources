@@ -1,0 +1,33 @@
+CentOS 6.5/6.6 安装（install）mysql 5.7 最完整版教程
+
+centos6.5 mysql centos centos6.6  defcon 2015年08月04日发布
+   |   3   收藏  |  37
+33.7k 次浏览
+Step1: 检测系统是否自带安装mysql
+
+# yum list installed | grep mysql
+Step2: 删除系统自带的mysql及其依赖命令：
+
+# yum -y remove mysql-libs.x86_64
+Step3: 给CentOS添加rpm源，并且选择较新的源命令：
+
+# wget dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
+# yum localinstall mysql-community-release-el6-5.noarch.rpm
+# yum repolist all | grep mysql
+# yum-config-manager --disable mysql55-community
+# yum-config-manager --disable mysql56-community
+# yum-config-manager --enable mysql57-community-dmr
+# yum repolist enabled | grep mysql
+Step4:安装mysql 服务器命令：
+
+# yum install mysql-community-server
+Step5: 启动mysql命令:
+
+# service mysqld start
+Step6: 查看mysql是否自启动,并且设置开启自启动命令:
+
+# chkconfig --list | grep mysqld
+# chkconfig mysqld on
+Step7: mysql安全设置命令：
+
+# mysql_secure_installation
