@@ -31,5 +31,5 @@
 [Linux命令大全](http://man.linuxde.net/)
 
 [安装docker]
-[ubuntu](https://github.com/benxiaohai1212/sources/blob/master/ubuntu/install-docker.md)
-[centos](https://github.com/benxiaohai1212/sources/blob/master/CentOS/install-docker.md)
+ * [ubuntu](https://github.com/benxiaohai1212/sources/blob/master/ubuntu/install-docker.md)
+ * [centos](https://github.com/benxiaohai1212/sources/blob/master/CentOS/install-docker.md)
