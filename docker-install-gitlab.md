@@ -1,9 +1,10 @@
-### 环境
+
 1、安装docker，docker-compose
+
 2、编辑docker-compose.yml文件
   mysql:
   ```xml
-  version: '2'
+version: '2'
 
 services:
   redis:
@@ -34,7 +35,7 @@ services:
     - redis
     - mysql
     ports:
-    - "10080:80"
+    - "80:80"
     - "2222:22"
     - "8443:443"
     volumes:
@@ -60,9 +61,9 @@ services:
     - GITLAB_NOTIFY_ON_BROKEN_BUILDS=true
     - GITLAB_NOTIFY_PUSHER=false
 
-    # - GITLAB_EMAIL=tomhat@126.com
-    # - GITLAB_EMAIL_REPLY_TO=tomhat@126.com
-    # - GITLAB_INCOMING_EMAIL_ADDRESS=tomhat@126.com
+    # - GITLAB_EMAIL=xxx@xxx.com
+    # - GITLAB_EMAIL_REPLY_TO=xxx@xxx.com
+    # - GITLAB_INCOMING_EMAIL_ADDRESS=xxx@xxx.com
 
     - GITLAB_BACKUP_SCHEDULE=daily
     - GITLAB_BACKUP_TIME=01:00
@@ -71,11 +72,11 @@ services:
     - UNICORN_TIMEOUT=120
 
     # - SMTP_ENABLED=true
-    # - SMTP_DOMAIN=mail.126.com
-    # - SMTP_HOST=smtp.126.com
+    # - SMTP_DOMAIN=mail.xxx.com
+    # - SMTP_HOST=smtp.xxx.com
     # - SMTP_PORT=25
-    # - SMTP_USER=tomhat@126.com
-    # - SMTP_PASS=zlq067003@
+    # - SMTP_USER=xxx@xxx.com
+    # - SMTP_PASS=xxx@
     # - SMTP_STARTTLS=true
     # - SMTP_AUTHENTICATION=login
     links:
@@ -86,7 +87,7 @@ services:
   postsql:
   
   ```xml
-  version: '2'
+version: '2'
 
 services:
   redis:
@@ -235,6 +236,7 @@ services:
     - OAUTH_AZURE_API_SECRET=
     - OAUTH_AZURE_TENANT_ID=
   ```
+  
 3、执行命令
 
 ```sh
