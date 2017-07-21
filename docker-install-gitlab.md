@@ -1,6 +1,9 @@
-docker-compose up -d
-```xml
-version: '2'
+### 环境
+1、安装docker，docker-compose
+2、编辑docker-compose.yml文件
+  mysql:
+  ```xml
+  version: '2'
 
 services:
   redis:
@@ -78,10 +81,12 @@ services:
     links:
     - mysql:mysql
     - redis:redisio
-```
-
-```xml
-version: '2'
+  ```
+  
+  postsql:
+  
+  ```xml
+  version: '2'
 
 services:
   redis:
@@ -229,5 +234,9 @@ services:
     - OAUTH_AZURE_API_KEY=
     - OAUTH_AZURE_API_SECRET=
     - OAUTH_AZURE_TENANT_ID=
+  ```
+3、执行命令
 
+```sh
+  docker-compose up -d
 ```
