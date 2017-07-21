@@ -174,3 +174,10 @@ can't use it. Using default external servers : [8.8.8.8 8.8.4.4]
 在wget的时候使用-N参数来安装最新版本的Docker：
 
 $ wget -N https://get.docker.com/ | sh
+
+
+# install docker-compose
+```sh
+sudo apt-get install python-pip
+pip install docker-compse
+```
