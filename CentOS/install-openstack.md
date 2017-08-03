@@ -1,6 +1,7 @@
 ### 用CentOS的RDO做一键部署单节点openstack
 
 [文档](http://openstack.redhat.com/install/packstack/)
+
 [资源](https://repos.fedorapeople.org/repos/openstack/)
 
 Summary for the impatient
@@ -74,3 +75,26 @@ Once the process is complete, you can log in to the OpenStack web interface Hori
 Next steps
 
 Now that your single node OpenStack instance is up and running, you can read on about running an instance, configuring a floating IP range, configuring RDO to work with your existing network, or about expanding your installation by adding a compute node.
+
+
+以上操作安装的ocata,我总结的操作如下：
+
+#### Step 0: Prerequisites
+
+软件环境
+
+需要企业版Red Hat 7(RHEL7)，或者CentOS、Scientific linux. x86_64
+
+硬件环境
+
+主机至少需要4GB内存，标配6GB内存；内核需要支持虚拟化（virtualization）；需要一块网卡
+
+
+#### Step 1: 本地语言非en要设置本地语言 locale （此条可以忽略）
+vim /etc/environment
+```sh
+LANG=en_US.utf-8
+LC_ALL=en_US.utf-8
+```
+
+#### Step 2：
