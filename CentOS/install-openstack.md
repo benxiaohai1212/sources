@@ -1,8 +1,7 @@
 ### 用CentOS的RDO做一键部署单节点openstack
 
-[文档](http://openstack.redhat.com/install/packstack/)
-
-[资源](https://repos.fedorapeople.org/repos/openstack/)
+* [文档](http://openstack.redhat.com/install/packstack/)
+* [资源](https://repos.fedorapeople.org/repos/openstack/)
 
 Summary for the impatient
 
@@ -52,7 +51,9 @@ On RHEL, download and install the RDO repository RPM to set up the OpenStack rep
 $ sudo yum install -y https://rdoproject.org/repos/rdo-release.rpm
 ```
 On CentOS, the Extras repository provides the RPM that enables the OpenStack repository. Extras is enabled by default on CentOS 7, so you can simply install the RPM to set up the OpenStack repository:
+```sh
 $ sudo yum install -y centos-release-openstack-ocata
+```
 Update your current packages:
 ```text
 $ sudo yum update -y
@@ -97,4 +98,37 @@ LANG=en_US.utf-8
 LC_ALL=en_US.utf-8
 ```
 
-#### Step 2：
+#### Step 2：对网络、防火墙、网络管理工具设置
+If you plan on having external network access to the server and instances, this is a good moment to properly configure your network settings. A static IP address to your network card, and disabling NetworkManager are good ideas.
+```sh
+$ sudo systemctl disable firewalld
+$ sudo systemctl stop firewalld
+$ sudo systemctl disable NetworkManager
+$ sudo systemctl stop NetworkManager
+$ sudo systemctl enable network
+$ sudo systemctl start network
+```
+
+#### Step 3:安装源
+```sh
+// 最新版rdo源：
+$ sudo yum install -y https://rdoproject.org/repos/rdo-release.rpm
+
+// Mitaka源：
+$ sudo yum install -y https://repos.fedorapeople.org/repos/openstack/openstack-mitaka/rdo-release-mitaka-7.noarch.rpm
+```
+
+#### Step 4:更新源
+```sh
+$ sudo yum update -y
+```
+
+#### Step 5: 安装openstack
+```sh
+$ sudo yum install -y openstack-packstack
+```
+
+#### Step 6:配置部署openstack
+```sh
+$ sudo packstack --allinone
+```
