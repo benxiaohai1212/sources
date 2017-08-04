@@ -40,3 +40,35 @@ id_rsa  id_rsa.pub  known_hosts
 ```sh
 scp id_rsa.pub 192.168.101.220:~/.ssh/authorized_keys
 ```
+### 多台机器间无密钥配置
+举例如：station213 -> station220：
+                station220 -> station213：
+1、station213 -> station220：
+```sh
+[root@station213 .ssh]# ssh-copy-id -i id_rsa.pub root@192.168.101.220  
+10  
+Now try logging into the machine, with "ssh 'root@192.168.101.220'", and check in:  
+  
+  
+  .ssh/authorized_keys  
+  
+  
+to make sure we haven't added extra keys that you weren't expecting.  
+  
+  
+[root@station213 .ssh]# ssh-copy-id -i id_rsa.pub root@192.168.101.220  
+10  
+root@192.168.101.220's password:   
+Now try logging into the machine, with "ssh 'root@192.168.101.220'", and check in:  
+  
+  
+  .ssh/authorized_keys  
+  
+  
+to make sure we haven't added extra keys that you weren't expecting.  
+  
+  
+[root@station213 .ssh]# ssh 192.168.101.220  
+Last login: Fri Mar 22 11:30:05 2013 from 192.168.101.213  
+```
+2、station213 -> station221：同上
