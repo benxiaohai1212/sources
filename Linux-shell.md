@@ -1,4 +1,4 @@
-查找文件，并将查找到的文件拷贝到指定目录
+### 查找文件，并将查找到的文件拷贝到指定目录
 1、使用exec:
 ```sh
 find /srv/docker/gitlab/backups/ -type f -ctime 0 -exec cp {} /backups/ \;
@@ -15,4 +15,28 @@ find /srv/docker/gitlab/backups/ -type f -ctime 0 | xargs cp --target-directory=
 3、
 ```sh
 find /srv/docker/gitlab/backups/ -type f -ctime 0 -print | xargs -i echo '"{}"' | xargs cp --target-directory /backups/
+```
+### 单向无密钥配置
+
+station213 -> station220：
+
+1、输入命令： ssh-keygen 一路回车...
+```sh
+[root@station213 ~]# ssh-keygen   
+Generating public/private rsa key pair.  
+Enter file in which to save the key (/root/.ssh/id_rsa):   
+/root/.ssh/id_rsa already exists.  
+Overwrite (y/n)? 
+```
+
+2、查看生成文件： id_rsa  id_rsa.pub
+```sh
+[root@station213 ~]# cd ~/.ssh/  
+[root@station213 .ssh]# ls  
+id_rsa  id_rsa.pub  known_hosts 
+```
+
+3、拷贝文件：id_rsa.pub 到目标机器 station220，并改名为：authorized_keys
+```sh
+scp id_rsa.pub 192.168.101.220:~/.ssh/authorized_keys
 ```
