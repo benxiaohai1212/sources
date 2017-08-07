@@ -248,3 +248,36 @@ services:
 ```sh
   docker-compose up -d
 ```
+
+4、gitlab迁移
+
+Restoring Backups
+
+GitLab also defines a rake task to restore a backup.
+
+Before performing a restore make sure the container is stopped and removed to avoid container name conflicts.
+```sh
+docker stop gitlab && docker rm gitlab
+```
+If this is a fresh database that you're doing the restore on, first you need to prepare the database:
+```sh
+docker run --name gitlab -it --rm [OPTIONS] \
+    sameersbn/gitlab:9.4.3 app:rake db:setup
+```
+Execute the rake task to restore a backup. Make sure you run the container in interactive mode -it.
+```sh
+docker run --name gitlab -it --rm [OPTIONS] \
+    sameersbn/gitlab:9.4.3 app:rake gitlab:backup:restore
+```
+The list of all available backups will be displayed in reverse chronological order. Select the backup you want to restore and continue.
+
+To avoid user interaction in the restore operation, specify the timestamp of the backup using the BACKUP argument to the rake task.
+```sh
+docker run --name gitlab -it --rm [OPTIONS] \
+    sameersbn/gitlab:9.4.3 app:rake gitlab:backup:restore BACKUP=1417624827
+```
+When using docker-compose you may use the following command to execute the restore.
+```sh
+docker-compose run --rm gitlab app:rake gitlab:backup:restore # List available backups
+docker-compose run --rm gitlab app:rake gitlab:backup:restore BACKUP=1417624827 # Choose to restore from 1417624827
+```
