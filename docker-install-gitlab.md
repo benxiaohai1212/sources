@@ -1,13 +1,13 @@
 
-1、安装docker，docker-compose
+### 1、安装docker，docker-compose
 
  * [ubuntu 14.04](https://github.com/benxiaohai1212/sources/blob/master/ubuntu/install-docker.md)
  
  * [centos 7](https://github.com/benxiaohai1212/sources/blob/master/CentOS/install-docker.md)
 
-2、编辑docker-compose.yml文件
+### 2、编辑docker-compose.yml文件
 
-mysql:
+#### mysql:
   
   ```xml
 version: '2'
@@ -90,7 +90,7 @@ services:
     - redis:redisio
   ```
   
-postgresql:
+#### postgresql:
   
   ```xml
 version: '2'
@@ -243,15 +243,15 @@ services:
     - OAUTH_AZURE_TENANT_ID=
   ```
   
-3、执行命令
+### 3、执行命令
 
 ```sh
   docker-compose up -d
 ```
 
-4、gitlab迁移
+### 4、gitlab迁移
 
-Creating backups
+#### Creating backups
 
 GitLab defines a rake task to take a backup of your gitlab installation. The backup consists of all git repositories, uploaded files and as you might expect, the sql database.
 
@@ -273,7 +273,7 @@ When using docker-compose you may use the following command to execute the backu
 docker-compose run --rm gitlab app:rake gitlab:backup:create
 ```
 
-Restoring Backups
+#### Restoring Backups
 
 GitLab also defines a rake task to restore a backup.
 
