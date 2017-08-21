@@ -1,9 +1,9 @@
 
 ### 1、安装docker，docker-compose
 
- * [ubuntu 14.04](https://github.com/benxiaohai1212/sources/blob/master/ubuntu/install-docker.md)
+ * [ubuntu 14.04](https://github.com/benxiaohai1212/sources/blob/master/Linux/Ubuntu/install-docker.md)
  
- * [centos 7](https://github.com/benxiaohai1212/sources/blob/master/CentOS/install-docker.md)
+ * [centos 7](https://github.com/benxiaohai1212/sources/blob/master/Linux/CentOS/install-docker.md)
 
 ### 2、编辑docker-compose.yml文件
 
