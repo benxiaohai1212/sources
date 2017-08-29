@@ -121,7 +121,17 @@ fi" >> /etc/rc.local
 cp redis-4.0.1/src/redis-server /usr/local/bin/
 cp redis-4.0.1/src/redis-cli /usr/local/bin/
 ```
+修改
+daemonize=yes
 
+logfile "/var/redis/log/redis.log"
+
+cp redis-4.0.1/redis.conf /etc/redis/6379.conf
+
+启动服务
+```sh
+redis-server /etc/redis/6379.conf
+```
 命令登录
 ```sh
 redis-cli -h 127.0.0.1 -p 6379 -n password
