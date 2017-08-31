@@ -1,3 +1,19 @@
+### 查询文件内字符串、替换文件内字符串
+```text
+grep, sed 在目录及递归子目录中的所有文件 查找并替换 字符串
+
+查找： grep "要找的字符串" -rl 目录
+
+替换： sed -i "s/要查找的字符串/替换字符串/g" `grep "要查找的字符串" -rl 目录`
+```
+例：
+```sh
+grep -r 'org.openstack4j' ./
+
+sed -i "s/org.openstack4j/cn.com.ecloud/g" `grep "org.openstack4j" -rl ./`
+```
+
+
 ### 查找文件，并将查找到的文件拷贝到指定目录
 1、使用exec:
 ```sh
