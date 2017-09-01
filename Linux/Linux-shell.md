@@ -1,3 +1,29 @@
+### CentOS 7.0默认使用的是firewall作为防火墙，使用iptables必须重新设置一下
+
+1、直接关闭防火墙
+```sh
+systemctl stop firewalld.service #停止firewall
+systemctl disable firewalld.service #禁止firewall开机启动
+```
+2、设置 iptables service
+```sh
+yum -y install iptables-services
+```
+如果要修改防火墙配置，如增加防火墙端口3306
+```sh
+vi /etc/sysconfig/iptables 
+```
+增加规则
+```sh
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 3306 -j ACCEPT
+```
+保存退出后
+```sh
+systemctl restart iptables.service #重启防火墙使配置生效
+systemctl enable iptables.service #设置防火墙开机启动
+```
+最后重启系统使设置生效即可
+
 ### Linux 下查看局域网内所有主机IP和MAC 
 ```sh
  用nmap对局域网扫描一遍，然后查看arp缓存表就可以知道局域内ip对应的mac了。nmap比较强大也可以直接扫描mac地址和端口。执行扫描之后就可以 cat/proc/net/arp查看arp缓存表了。
