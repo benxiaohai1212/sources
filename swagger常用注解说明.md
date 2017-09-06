@@ -89,3 +89,118 @@ ApiOperation：用在方法上，说明方法的作用，每一个url资源的�
     }
   }
 ```
+#### 3. ApiParam标记
+
+ApiParam请求属性,使用方式：
+```java
+public ResponseEntity<User> createUser(@RequestBody @ApiParam(value = "Created user object", required = true)  User user)
+```
+与Controller中的方法并列使用。
+
+属性配置：
+|属性名称|	备注|
+|---|---|
+|name|	属性名称|
+|value|	属性值|
+|defaultValue|	默认属性值|
+|allowableValues|	可以不配置|
+|required|	是否属性必填|
+|access|	不过多描述|
+|allowMultiple|	默认为false|
+|hidden|	隐藏该属性|
+
+example	举例子
+
+在SpringMvc中的配置如下：
+```java
+ public ResponseEntity<Order> getOrderById(
+      @ApiParam(value = "ID of pet that needs to be fetched", allowableValues = "range[1,5]", required = true)
+      @PathVariable("orderId") String orderId)
+```
+#### 4. ApiResponse
+
+ApiResponse：响应配置，使用方式：
+```java
+@ApiResponse(code = 400, message = "Invalid user supplied")
+```
+与Controller中的方法并列使用。 属性配置：
+
+|属性名称|	备注|
+|---|---|
+|code|	http的状态码|
+|message|	描述|
+|response|	默认响应类 Void|
+|reference|	参考ApiOperation中配置|
+|responseHeaders|	参考 ResponseHeader 属性配置说明|
+|responseContainer|	参考ApiOperation中配置|
+
+在SpringMvc中的配置如下：
+```java
+ @RequestMapping(value = "/order", method = POST)
+  @ApiOperation(value = "Place an order for a pet", response = Order.class)
+  @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Order") })
+  public ResponseEntity<String> placeOrder(
+      @ApiParam(value = "order placed for purchasing the pet", required = true) Order order) {
+    storeData.add(order);
+    return ok("");
+  }
+```
+#### 5. ApiResponses
+
+ApiResponses：响应集配置，使用方式：
+```java
+ @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Order") })
+```
+与Controller中的方法并列使用。 属性配置：
+
+|属性名称|	备注|
+|---|---|
+|value|	多个ApiResponse配置|
+
+在SpringMvc中的配置如下：
+```java
+ @RequestMapping(value = "/order", method = POST)
+  @ApiOperation(value = "Place an order for a pet", response = Order.class)
+  @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Order") })
+  public ResponseEntity<String> placeOrder(
+      @ApiParam(value = "order placed for purchasing the pet", required = true) Order order) {
+    storeData.add(order);
+    return ok("");
+  }
+```          
+#### 6. ResponseHeader
+
+响应头设置，使用方法
+```java
+@ResponseHeader(name="head1",description="response head conf")
+```
+与Controller中的方法并列使用。 属性配置：
+
+|属性名称|	备注|
+|---|---|
+|name|	响应头名称|
+|description|	头描述|
+|response|	默认响应类 Void|
+|responseContainer|	参考ApiOperation中配置|
+
+在SpringMvc中的配置如下：
+```java
+@ApiModel(description = "群组")
+```
+7. 其他
+```text
+@ApiImplicitParams：用在方法上包含一组参数说明；
+@ApiImplicitParam：用在@ApiImplicitParams注解中，指定一个请求参数的各个方面
+paramType：参数放在哪个地方
+name：参数代表的含义
+value：参数名称
+dataType： 参数类型，有String/int，无用
+required ： 是否必要
+defaultValue：参数的默认值
+@ApiResponses：用于表示一组响应；
+@ApiResponse：用在@ApiResponses中，一般用于表达一个错误的响应信息；
+code： 响应码(int型)，可自定义
+message：状态码对应的响应信息
+@ApiModel：描述一个Model的信息（这种一般用在post创建的时候，使用@RequestBody这样的场景，请求参数无法使用@ApiImplicitParam注解进行描述的时候；
+@ApiModelProperty：描述一个model的属性。
+```
