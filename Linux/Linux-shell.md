@@ -1,3 +1,54 @@
+### Linux下查看文件和文件夹大小
+
+当磁盘大小超过标准时会有报警提示，这时如果掌握df和du命令是非常明智的选择。
+>df可以查看一级文件夹大小、使用比例、档案系统及其挂入点，但对文件却无能为力
+
+>du可以查看文件及文件夹的大小
+
+两者配合使用，非常有效。比如用df查看哪个一级目录过大，然后用df查看文件夹或文件的大小，如此便可迅速确定症结
+
+下面分别简要介绍
+
+#### df命令可以显示目前所有文件系统的可用空间及使用情形
+```sh
+tomhat@tomhat:~/projectSource/project/docker-images$ df -h
+文件系统        容量  已用  可用 已用% 挂载点
+udev            1.9G  4.0K  1.9G    1% /dev
+tmpfs           376M  1.4M  374M    1% /run
+/dev/sda1       107G   78G   24G   77% /
+none            4.0K     0  4.0K    0% /sys/fs/cgroup
+none            5.0M     0  5.0M    0% /run/lock
+none            1.9G  129M  1.8G    7% /run/shm
+none            100M   48K  100M    1% /run/user
+```
+ #### du：查询文件或文件夹的磁盘使用空间
+ 
+如果当前目录下文件和文件夹很多，使用不带参数du的命令，可以循环列出所有文件和文件夹所使用的空间。这对查看究竟是那个地方过大是不利的，所以得指定深入目录的层数，参数：--max-depth=，这是个极为有用的参数！如下，注意使用“*”，可以得到文件的使用空间大小.
+```sh
+[root@bsso yayu]# du -h --max-depth=1 work/testing
+27M     work/testing/logs
+35M     work/testing
+
+[root@bsso yayu]# du -h --max-depth=1 work/testing/*
+8.0K    work/testing/func.php
+27M     work/testing/logs
+8.1M    work/testing/nohup.out
+8.0K    work/testing/testing_c.php
+12K     work/testing/testing_func_reg.php
+8.0K    work/testing/testing_get.php
+8.0K    work/testing/testing_g.php
+8.0K    work/testing/var.php
+
+[root@bsso yayu]# du -h --max-depth=1 work/testing/logs/
+27M     work/testing/logs/
+
+[root@bsso yayu]# du -h --max-depth=1 work/testing/logs/*
+24K     work/testing/logs/errdate.log_show.log
+8.0K    work/testing/logs/pertime_show.log
+27M     work/testing/logs/show.log
+```
+---
+
 ### CentOS 7.0默认使用的是firewall作为防火墙，使用iptables必须重新设置一下
 
 1、直接关闭防火墙
