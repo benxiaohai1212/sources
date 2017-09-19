@@ -74,6 +74,7 @@ systemctl restart iptables.service #重启防火墙使配置生效
 systemctl enable iptables.service #设置防火墙开机启动
 ```
 最后重启系统使设置生效即可
+---
 
 ### Linux 下查看局域网内所有主机IP和MAC 
 ```sh
@@ -94,6 +95,7 @@ $ nmap -PU 192.168.1.0/24　　
 使用频率最高的扫描选项（SYN扫描,又称为半开放扫描），它不打开一个完全的TCP连接，执行得很快：
 $ nmap -sS 192.168.1.0/24
 ```
+---
 
 ### 查询文件内字符串、替换文件内字符串
 ```text
@@ -110,7 +112,7 @@ grep -r 'org.openstack4j' ./
 sed -i "s/org.openstack4j/cn.com.ecloud/g" `grep "org.openstack4j" -rl ./`
 ```
 
-
+---
 ### 查找文件，并将查找到的文件拷贝到指定目录
 1、使用exec:
 ```sh
@@ -153,6 +155,7 @@ id_rsa  id_rsa.pub  known_hosts
 ```sh
 scp id_rsa.pub 192.168.101.220:~/.ssh/authorized_keys
 ```
+---
 ### 多台机器间无密钥配置
 举例如：station213 -> station220：
                 station220 -> station213：
@@ -161,26 +164,20 @@ scp id_rsa.pub 192.168.101.220:~/.ssh/authorized_keys
 [root@station213 .ssh]# ssh-copy-id -i id_rsa.pub root@192.168.101.220  
 10  
 Now try logging into the machine, with "ssh 'root@192.168.101.220'", and check in:  
-  
-  
+    
   .ssh/authorized_keys  
-  
-  
+    
 to make sure we haven't added extra keys that you weren't expecting.  
-  
-  
+    
 [root@station213 .ssh]# ssh-copy-id -i id_rsa.pub root@192.168.101.220  
 10  
 root@192.168.101.220's password:   
 Now try logging into the machine, with "ssh 'root@192.168.101.220'", and check in:  
-  
-  
+    
   .ssh/authorized_keys  
-  
-  
+    
 to make sure we haven't added extra keys that you weren't expecting.  
-  
-  
+    
 [root@station213 .ssh]# ssh 192.168.101.220  
 Last login: Fri Mar 22 11:30:05 2013 from 192.168.101.213  
 ```
