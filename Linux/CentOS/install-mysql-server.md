@@ -128,6 +128,8 @@ mysql>
  
  参考资料：
  > http://blog.csdn.net/lgstudyvc/article/details/74999836
+ 
  > http://blog.csdn.net/u010603691/article/details/50541979
+ 
  > https://dev.mysql.com/doc/refman/5.7/en/grant.html
  
