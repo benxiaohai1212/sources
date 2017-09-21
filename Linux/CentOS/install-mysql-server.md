@@ -96,13 +96,38 @@ ERROR 1820 (HY000): You must reset your password using ALTER USER statement befo
 mysql>
  
  ```
- 3、 mysql5.7数据库密码问题
- 
- 
+ 3、 mysql5.7数据库密码问题 
+ mysql-5.7.19对密码又要求：
+ #### 设置的密码中必须至少包含一个大写字母、一个小写字母、一个特殊符号、一个数字，密码长度至少为8个字符
+ 解决上面问题：
+ ```sh
+ mysql> show databases;
+ERROR 1820 (HY000): You must reset your password using ALTER USER statement before executing this statement.
+
+# 修改USER密码
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '1234.coM';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> GRANT ALL ON *.* TO 'root'@'%';
+ERROR 1133 (42000): Can't find any matching row in the user table
+
+# 赋远程权限
+mysql> grant all on *.* to root@"%" Identified by "1234.coM";
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>
+ ```
+通过上述操作完成了安装最新版mysql数据库5.7.19,成功修改了数据库root的密码，同时对root用户赋了远程可操作权限；
  
  
  参考资料：
- http://blog.csdn.net/lgstudyvc/article/details/74999836
- http://blog.csdn.net/u010603691/article/details/50541979
- https://dev.mysql.com/doc/refman/5.7/en/grant.html
+ > http://blog.csdn.net/lgstudyvc/article/details/74999836
+ > http://blog.csdn.net/u010603691/article/details/50541979
+ > https://dev.mysql.com/doc/refman/5.7/en/grant.html
  
