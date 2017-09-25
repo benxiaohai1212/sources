@@ -38,3 +38,23 @@
 4、将下载的deb包放在docker目录中
 
  > dpkg -i docker/*.deb
+ 查看安装版本号
+```log
+root@jenkins:~# docker version
+Client:
+ Version:      17.05.0-ce
+ API version:  1.29
+ Go version:   go1.7.5
+ Git commit:   89658be
+ Built:        Thu May  4 22:06:06 2017
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      17.05.0-ce
+ API version:  1.29 (minimum version 1.12)
+ Go version:   go1.7.5
+ Git commit:   89658be
+ Built:        Thu May  4 22:06:06 2017
+ OS/Arch:      linux/amd64
+ Experimental: false
+ ```
