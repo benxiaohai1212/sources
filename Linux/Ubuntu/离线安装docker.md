@@ -34,3 +34,7 @@
  > 下载deb：libsystemd-journal0_215-17+deb8u5_amd64.deb
 
  > (http://archive.ubuntu.com/ubuntu/pool/main/s/systemd/libsystemd-journal0_204-5ubuntu20_amd64.deb)
+
+4、将下载的deb包放在docker目录中
+
+ > dpkg -i docker/*.deb
