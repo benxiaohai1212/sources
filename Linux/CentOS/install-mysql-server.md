@@ -200,6 +200,32 @@ root      5837  2880  0 22:40 pts/1    00:00:00 grep --color mysql
 藏在日志文件中的临时密码
 [root@test /var/lib/mysql]# grep "A temporary password"  /var/log/mysqld.log 
 2016-05-17T16:46:53.059632Z 1 [Note] A temporary password is generated for root@localhost: +wGVA#to(4tu
+
+
+各项值说明
+
+validate_password_policy：密码安全策略，默认MEDIUM策略
+
+| 策略 | 	检查规则 |
+| --- | -------- |
+|0 or LOW | 	Length |
+|1 or MEDIUM | 	Length; numeric, lowercase/uppercase, and special characters |
+|2 or STRONG | 	Length; numeric, lowercase/uppercase, and special characters; dictionary file |
+
+    
+
+validate_password_dictionary_file：密码策略文件，策略为STRONG才需要
+
+validate_password_length：密码最少长度 
+
+validate_password_mixed_case_count：大小写字符长度，至少1个
+
+validate_password_number_count ：数字至少1个  validate_password_special_char_count：特殊字符至少1个
+
+3、修改策略（将策略要求置为LOW，长度要求置为1）
+
+set global validate_password_policy=0;
+set global validate_password_length=1;
 ```
  
  参考资料：
