@@ -4,11 +4,8 @@
 1. 下载离线安装包
     *  URL:https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.19-1.el7.x86_64.rpm-bundle.tar
     *  包名：mysql-5.7.19-1.el7.x86_64.rpm-bundle.tar 
-    
-    
-    
-    
-    
+
+
 | Package Name               |	Summary                                                                   |
 | -------------------------- | ----------------------------------------------------------------------------|
 | mysql-community-server     | Database server and related tools |
@@ -75,12 +72,15 @@ validate_password_policy：密码安全策略，默认MEDIUM策略
 ```
    5、修改策略（将策略要求置为LOW，长度要求置为1）
 ```sh
-set global validate_password_policy=0;
-set global validate_password_length=1;
+mysql > set global validate_password_policy=0;
+mysql > set global validate_password_length=1;
 ```
    6. 修改密码
 ```sh
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'mysql';
+mysql > ALTER USER 'root'@'localhost' IDENTIFIED BY 'mysql';
+mysql > grant all on *.* to root@"%" Identified by "123456";
+mysql > flush privileges;
+mysql > exit;
    
 ```
 
