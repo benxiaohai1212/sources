@@ -2,6 +2,7 @@
 
 
 1. 下载离线安装包
+    *  URL:https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.19-1.el7.x86_64.rpm-bundle.tar
     *  包名：mysql-5.7.19-1.el7.x86_64.rpm-bundle.tar
     
 | Package Name               |	Summary                                                                   |
@@ -30,8 +31,7 @@ mysql-community-minimal-debuginfo-5.7.19-1.el7.x86_64.rpm
 mysql-community-server-5.7.19-1.el7.x86_64.rpm
 mysql-community-server-minimal-5.7.19-1.el7.x86_64.rpm
 mysql-community-test-5.7.19-1.el7.x86_64.rpm
-```
- 
-    *  URL:https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.19-1.el7.x86_64.rpm-bundle.tar
+``` 
+
     
 
