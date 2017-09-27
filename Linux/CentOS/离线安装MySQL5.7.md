@@ -16,7 +16,7 @@
 | mysql-community-embedded-devel |	Development header files and libraries for MySQL as an embeddable library |
 | mysql-community-test           |	Test suite for the MySQL server |
 
-解压：
+解压：tar xvf mysql-5.7.19-1.el7.x86_64.rpm-bundle.tar
 ```text
 mysql-community-client-5.7.19-1.el7.x86_64.rpm
 mysql-community-common-5.7.19-1.el7.x86_64.rpm
