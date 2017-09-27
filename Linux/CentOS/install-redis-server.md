@@ -144,5 +144,71 @@ OK
 ```
 
 
+## 简单安装
+
+[下载redis地址](https://redis.io/download)
+```sh
+wget http://download.redis.io/releases/redis-4.0.1.tar.gz
+tar xzf redis-4.0.1.tar.gz
+cd redis-4.0.1
+make
+```
+显示日志
+```log
+.....
+LINK redis-benchmark 
+CC redis-check-dump.o 
+LINK redis-check-dump 
+CC redis-check-aof.o 
+LINK redis-check-aof
+
+Hint: It’s a good idea to run ‘make test’ ;)
+```
+创建存储redis文件目录
+```sh
+mkdir -p /usr/local/redis
+```
+复制redis-server redis-cli到新建立的文件夹
+```sh
+cp ./redis-server /usr/local/redis/
+cp ./redis-cli /usr/local/redis/
+```
+复制redis的配置文件
+```sh
+cd ..
+cp redis.conf /usr/local/redis/
+```
+编辑配置文件
+```sh
+cd /usr/local/redis/
+vim redis.conf
+```
+
+添加开机启动服务
+vim /etc/systemd/system/redis-server.service
+
+粘贴如下内容
+```sh
+[Unit]
+Description=The redis-server Process Manager
+After=syslog.target network.target
+
+[Service]
+Type=simple
+PIDFile=/var/run/redis.pid
+ExecStart=/usr/local/redis/redis-server       
+ExecReload=/bin/kill -USR2 $MAINPID
+ExecStop=/bin/kill -SIGINT $MAINPID
+
+[Install]
+WantedBy=multi-user.target
+```
+
+设置开机启动
+```sh
+systemctl daemon-reload 
+systemctl start redis-server.service 
+systemctl enable redis-server.service
+```
 
 
