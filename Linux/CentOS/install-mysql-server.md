@@ -125,6 +125,36 @@ mysql>
  ```
 通过上述操作完成了安装最新版mysql数据库5.7.19,成功修改了数据库root的密码，同时对root用户赋了远程可操作权限；
  
+关闭密码策略
+```sh
+mysql> SHOW VARIABLES LIKE 'validate_password%';
++--------------------------------------+--------+
+| Variable_name                        | Value  |
++--------------------------------------+--------+
+| validate_password_dictionary_file    |        |
+| validate_password_length             | 8      |
+| validate_password_mixed_case_count   | 1      |
+| validate_password_number_count       | 1      |
+| validate_password_policy             | MEDIUM |
+| validate_password_special_char_count | 1      |
++--------------------------------------+--------+
+rows in set (0.02 sec) 
+
+mysql> show plugins;
++----------------------------+----------+--------------------+----------------------+-------------+
+| Name                       | Status   | Type               | Library              | License     |
++----------------------------+----------+--------------------+----------------------+-------------+
+| binlog                     | ACTIVE   | STORAGE ENGINE     | NULL                 | PROPRIETARY |
+
+...
+| validate_password          | ACTIVE   | VALIDATE PASSWORD  | validate_password.so | PROPRIETARY |
++----------------------------+----------+--------------------+----------------------+-------------+
+---可以通过在配置文件[mysqld]标签中添加 validate_passwor=off ，来关闭密码策略
+如下:
+...
+| validate_password          | DISABLED | VALIDATE PASSWORD  | validate_password.so | PROPRIETARY |
++----------------------------+----------+--------------------+----------------------+-------------+
+```
  
  参考资料：
  > http://blog.csdn.net/lgstudyvc/article/details/74999836
