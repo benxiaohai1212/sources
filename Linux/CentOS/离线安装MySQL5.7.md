@@ -34,6 +34,7 @@ mysql-community-server-5.7.19-1.el7.x86_64.rpm
 mysql-community-server-minimal-5.7.19-1.el7.x86_64.rpm
 mysql-community-test-5.7.19-1.el7.x86_64.rpm
 ``` 
+
 2. 安装,保留上述表格中rpm安装包，执行下面命令
 ```sh
     yum install -y ./*.rpm
@@ -76,9 +77,9 @@ set global validate_password_policy=0;
 set global validate_password_length=1;
 ```
    6. 修改密码
-   ```sh
-   ALTER USER 'root'@'localhost' IDENTIFIED BY 'mysql';
+```sh
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'mysql';
    
-   ```
+```
 
 
