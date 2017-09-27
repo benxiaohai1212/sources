@@ -16,10 +16,20 @@
 | mysql-community-embedded-devel |	Development header files and libraries for MySQL as an embeddable library |
 | mysql-community-test           |	Test suite for the MySQL server |
 
-        *  libaio-0.3.109-13.el7.x86_64.rpm
-        *  perl-Data-Dumper-2.145-3.el7.x86_64.rpm
-        *  numactl-libs-2.0.9-6.el7_2.x86_64.rpm
-        *  numactl-2.0.9-6.el7_2.x86_64.rpm
+解压：
+-rw-r--r-- 1 7155 31415  25085192 6月  24 20:08 mysql-community-client-5.7.19-1.el7.x86_64.rpm
+-rw-r--r-- 1 7155 31415    278292 6月  24 20:08 mysql-community-common-5.7.19-1.el7.x86_64.rpm
+-rw-r--r-- 1 7155 31415   3778852 6月  24 20:08 mysql-community-devel-5.7.19-1.el7.x86_64.rpm
+-rw-r--r-- 1 7155 31415  46236988 6月  24 20:08 mysql-community-embedded-5.7.19-1.el7.x86_64.rpm
+-rw-r--r-- 1 7155 31415  24077820 6月  24 20:08 mysql-community-embedded-compat-5.7.19-1.el7.x86_64.rpm
+-rw-r--r-- 1 7155 31415 128296360 6月  24 20:09 mysql-community-embedded-devel-5.7.19-1.el7.x86_64.rpm
+-rw-r--r-- 1 7155 31415   2238032 6月  24 20:09 mysql-community-libs-5.7.19-1.el7.x86_64.rpm
+-rw-r--r-- 1 7155 31415   2115696 6月  24 20:09 mysql-community-libs-compat-5.7.19-1.el7.x86_64.rpm
+-rw-r--r-- 1 7155 31415  55456196 6月  24 20:09 mysql-community-minimal-debuginfo-5.7.19-1.el7.x86_64.rpm
+-rw-r--r-- 1 7155 31415 171537176 6月  24 20:09 mysql-community-server-5.7.19-1.el7.x86_64.rpm
+-rw-r--r-- 1 7155 31415  15258732 6月  24 20:09 mysql-community-server-minimal-5.7.19-1.el7.x86_64.rpm
+-rw-r--r-- 1 7155 31415 118490200 6月  24 20:10 mysql-community-test-5.7.19-1.el7.x86_64.rpm
+
  
     *  URL:https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.19-1.el7.x86_64.rpm-bundle.tar
     
