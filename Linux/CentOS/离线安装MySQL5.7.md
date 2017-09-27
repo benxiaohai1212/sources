@@ -3,8 +3,8 @@
 
 1. 下载离线安装包
     *  URL:https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.19-1.el7.x86_64.rpm-bundle.tar
-    *  包名：mysql-5.7.19-1.el7.x86_64.rpm-bundle.tar
-    *  参考资料: https://dev.mysql.com/doc/refman/5.7/en/linux-installation-rpm.html
+    *  包名：mysql-5.7.19-1.el7.x86_64.rpm-bundle.tar 
+    *  参考资料: https://dev.mysql.com/doc/refman/5.7/en/linux-installation-rpm.html
     
     
 | Package Name               |	Summary                                                                   |
@@ -34,6 +34,12 @@ mysql-community-server-5.7.19-1.el7.x86_64.rpm
 mysql-community-server-minimal-5.7.19-1.el7.x86_64.rpm
 mysql-community-test-5.7.19-1.el7.x86_64.rpm
 ``` 
-2. 安装
+2. 安装,保留上述表格中rpm安装包，执行下面命令
+```sh
+    yum install -y ./*.rpm
+```
+
+3. 配置修改mysql密码策略
+
 
 
