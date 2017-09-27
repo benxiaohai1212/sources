@@ -206,11 +206,11 @@ root      5837  2880  0 22:40 pts/1    00:00:00 grep --color mysql
 
 validate_password_policy：密码安全策略，默认MEDIUM策略
 
-| 策略 | 	检查规则 |
-| --- | -------- |
-|0 or LOW | 	Length |
-|1 or MEDIUM | 	Length; numeric, lowercase/uppercase, and special characters |
-|2 or STRONG | 	Length; numeric, lowercase/uppercase, and special characters; dictionary file |
+| 策略         | 	检查规则                                                                       |
+| ----------- | ------------------------------------------------------------------------------ |
+| 0 or LOW    | 	Length                                                                        |
+| 1 or MEDIUM | 	Length; numeric, lowercase/uppercase, and special characters                  |
+| 2 or STRONG | 	Length; numeric, lowercase/uppercase, and special characters; dictionary file |
 
     
 
@@ -229,6 +229,8 @@ set global validate_password_length=1;
 ```
  
  参考资料：
+ 
+ > http://www.cnblogs.com/zhi-leaf/p/5994478.html
  > http://www.cnblogs.com/jonsea/p/5510219.html
  
  > http://blog.csdn.net/lgstudyvc/article/details/74999836
