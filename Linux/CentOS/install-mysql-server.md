@@ -203,6 +203,8 @@ root      5837  2880  0 22:40 pts/1    00:00:00 grep --color mysql
 ```
  
  参考资料：
+ > http://www.cnblogs.com/jonsea/p/5510219.html
+ 
  > http://blog.csdn.net/lgstudyvc/article/details/74999836
  
  > http://blog.csdn.net/u010603691/article/details/50541979
