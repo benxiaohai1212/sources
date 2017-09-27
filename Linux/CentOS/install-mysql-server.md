@@ -231,6 +231,7 @@ set global validate_password_length=1;
  参考资料：
  
  > http://www.cnblogs.com/zhi-leaf/p/5994478.html
+ 
  > http://www.cnblogs.com/jonsea/p/5510219.html
  
  > http://blog.csdn.net/lgstudyvc/article/details/74999836
