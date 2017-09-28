@@ -182,24 +182,31 @@ cp redis.conf /usr/local/redis/
 ```sh
 cd /usr/local/redis/
 vim redis.conf
+
+bind 0.0.0.0
+requriepass ctproject8
 ```
 
 添加开机启动服务
-vim /etc/systemd/system/redis-server.service
+vim /etc/systemd/system/redis.service
 
 粘贴如下内容
 ```sh
 [Unit]
-Description=The redis-server Process Manager
+Description=The redis 4.0.1 Process Manager
 After=syslog.target network.target
 
 [Service]
-Type=simple
-PIDFile=/var/run/redis.pid
-ExecStart=/usr/local/redis/redis-server       
-ExecReload=/bin/kill -USR2 $MAINPID
-ExecStop=/bin/kill -SIGINT $MAINPID
+#Type=simple
+#PIDFile=/var/run/redis.pid
+#ExecStart=/usr/local/redis/redis-server       
+#ExecReload=/bin/kill -USR2 $MAINPID
+#ExecStop=/bin/kill -SIGINT $MAINPID
 
+#此处为命令行启动redis的命令及参数,可参考官方文档
+ExecStart=/usr/local/bin/redis-server /etc/redis.conf --daemonize no  
+#停止redis服务器命令
+ExecStop=/usr/local/bin/redis-cli -h 127.0.0.1 -p 6379 shutdown
 [Install]
 WantedBy=multi-user.target
 ```
@@ -207,8 +214,8 @@ WantedBy=multi-user.target
 设置开机启动
 ```sh
 systemctl daemon-reload 
-systemctl start redis-server.service 
-systemctl enable redis-server.service
+systemctl start redis.service 
+systemctl enable redis.service
 ```
 
 
