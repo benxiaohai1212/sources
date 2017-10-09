@@ -1,5 +1,55 @@
 ## Ubuntu安装Docker
 
+### Uninstall old versions
+```sh
+sudo apt-get remove docker docker-engine docker.io
+```
+
+### Recommended extra packages for Trusty 14.04
+```sh
+sudo apt-get update
+
+sudo apt-get install \
+    linux-image-extra-$(uname -r) \
+    linux-image-extra-virtual
+```
+
+### Install using the repository
+1. Update the apt package index:
+```sh
+sudo apt-get update
+```
+2. Install packages to allow apt to use a repository over HTTPS:
+```sh
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+```
+3. Add Docker’s official GPG key:
+```sh
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
+### INSTALL DOCKER CE
+1. Update the apt package index.
+```sh
+sudo apt-get update
+```
+2. Install the latest version of Docker CE
+```sh
+sudo apt-get install docker-ce
+```
+### Uninstall Docker CE
+1. Uninstall the Docker CE package:
+```sh
+sudo apt-get purge docker-ce
+```
+2. Images, containers, volumes, or customized configuration files on your host are not automatically removed. To delete all images, containers, and volumes
+```sh
+sudo rm -rf /var/lib/docker
+```
+
 首先要确认你的 Ubuntu 版本是否符合安装 Docker 的前提条件。如果没有问题，你可以通过下边的方式来安装 Docker ：
 
     使用具有sudo权限的用户来登录你的Ubuntu。
