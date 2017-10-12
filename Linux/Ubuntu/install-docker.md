@@ -7,6 +7,14 @@ sudo apt-get remove docker docker-engine docker.io
 
 ### Recommended extra packages for Trusty 14.04
 ```sh
+$sudo apt-get update
+$sudo apt-get install linux-image-generic-lts-trusty
+$sudo reboot
+$wget -qO- https://get.docker.com/ | sh
+$sudo docker -v
+```
+
+```sh
 sudo apt-get update
 
 sudo apt-get install \
