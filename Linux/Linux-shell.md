@@ -1,3 +1,52 @@
+### 截取字符串
+
+1. 第一种方法:
+```
+${varible##*string} 从左向右截取最后一个string后的字符串
+${varible#*string}从左向右截取第一个string后的字符串
+${varible%%string*}从右向左截取最后一个string后的字符串
+${varible%string*}从右向左截取第一个string后的字符串
+“*”只是一个通配符可以不要
+```
+2. 第二种方法：${varible:n1:n2}:截取变量varible从n1到n2之间的字符串
+3. 按照指定要求分割
+
+示例：
+1. 截取字符变量的前8位
+```
+expr substr “$a” 1 8
+echo $a|awk ‘{print substr(,1,8)}'
+echo $a|cut -c1-8
+echo $
+expr $a : ‘\(.\\).*'
+echo $a|dd bs=1 count=8 2>/dev/null
+
+$ MYVAR=foodforthought.jpg
+$ echo ${MYVAR##*fo}
+rthought.jpg
+$ echo ${MYVAR#*fo}
+odforthought.jpg
+```
+2. 根据特定字符偏移和长度
+```
+$ EXCLAIM=cowabunga
+$ echo ${EXCLAIM:0:3}
+cow
+$ echo ${EXCLAIM:3:7}
+abunga
+```
+3. 
+```
+获取后缀名
+ls -al | cut -d "." -f2
+
+$MYVAR="12|dadg"
+echo ${MYVAR##*|}   #打印分隔符后的字符串
+dafa
+echo ${MYVAR%%|*} #打印分隔符前的字符串
+12
+```
+
 ### Linux下查看文件和文件夹大小
 
 当磁盘大小超过标准时会有报警提示，这时如果掌握df和du命令是非常明智的选择。
