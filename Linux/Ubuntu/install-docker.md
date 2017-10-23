@@ -239,3 +239,6 @@ $ wget -N https://get.docker.com/ | sh
 sudo apt-get install python-pip
 pip install docker-compse
 ```
+```sh
+sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+```
