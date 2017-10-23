@@ -230,15 +230,20 @@ can't use it. Using default external servers : [8.8.8.8 8.8.4.4]
 ## 升级Docker
 
 在wget的时候使用-N参数来安装最新版本的Docker：
-
+```sh
 $ wget -N https://get.docker.com/ | sh
-
+```
+Or
+```sh
+$ apt-get upgrade docker
+```
 
 # install docker-compose
 ```sh
 sudo apt-get install python-pip
 pip install docker-compse
 ```
+Or
 ```sh
 sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 ```
