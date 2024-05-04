@@ -85,3 +85,9 @@ sudo yum -y install python-pip
 sudo yum clean all
 ```
 
+## 解决 Docker pull 出现的 error pulling image configurati
+
+出现这个问题，一般的原因是无法连接到 docker hub,
+```
+echo "DOCKER_OPTS=\"\$DOCKER_OPTS --registry-mirror=http://f2d6cb40.m.daocloud.io\"" | sudo tee -a /etc/default/docker
+```

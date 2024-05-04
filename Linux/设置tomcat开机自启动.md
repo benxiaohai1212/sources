@@ -1,4 +1,6 @@
-### 1、centos设置tomcat开机自启动
+## tomcat设置开机自启动
+
+### 一、centos设置tomcat开机自启动
  今天设置tomcat自动启动，服务器是centos;我做了如下步骤：
  
  * 1、写一个脚本 autoAPI.sh
@@ -88,8 +90,56 @@ Note: This output shows SysV services only and does not include native
 autoAPI.sh     	0:off	1:off	2:on	3:on	4:on	5:on	6:off
 
 ```
-### 2、ubuntu设置tomcat开机自启动
-### 方法一：
+### 二、centos7 设置tomcat开机自启动
+
+1. 在tomcat/bin 目录下面，增加setenv.sh配置，catalina.sh启动的时候会调用，同时配置java内存参数  
+`vim setenv.sh`
+```
+#tomcat启动pid
+
+export JAVA_HOME=/opt/jdk8
+export CATALINA_HOME=/opt/tomcat8
+export CATALINA_BASE=/opt/tomcat8
+#add tomcat pid
+CATALINA_PID="$CATALINA_BASE/tomcat.pid"
+#add java opts
+JAVA_OPTS="-server -XX:PermSize=256M -XX:MaxPermSize=1024m -Xms512M -Xmx1024M -XX:MaxNewSize=256m"
+```
+
+2. 增加tomcat.service在/usr/lib/systemd/system目录下增加tomcat.service，目录必须是绝对目录  
+`vim /usr/lib/systemd/system/tomcat.service`
+```
+[Unit]
+Description=Tomcat
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+PIDFile=/opt/tomcat8/tomcat.pid
+ExecStart=/opt/tomcat8/bin/startup.sh
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+```
+> [unit]配置了服务的描述，规定了在network启动之后执行，  
+> [service]配置服务的pid，服务的启动，停止，重启  
+> [install]配置了使用用户  
+
+3.使用tomcat.service
+```
+systemctl enable tomcat.service
+systemctl start tomcat.service
+systemctl stop tomcat.service
+systemctl restart tomcat.service
+```
+> 因为配置pid，在启动的时候会在tomcat的根目录下生产tomcat.pid文件，停止后删除
+
+### 三、ubuntu设置tomcat开机自启动
+
+#### 方法一：
 ```bash
   vi /etc/rc.local  
 ```
@@ -100,7 +150,7 @@ autoAPI.sh     	0:off	1:off	2:on	3:on	4:on	5:on	6:off
 （脚本绝对路径）
 注意：要添加在exit 0上边，reboot试试。
 
-### 方法二：
+#### 方法二：
 
 1、安装 sysv-rc-conf
 ```bash
@@ -118,25 +168,26 @@ autoAPI.sh     	0:off	1:off	2:on	3:on	4:on	5:on	6:off
     vi /etc/init.d/tomcatStart  
 ```
 ```bash
-    TOMCAT_HOME="/usr/local/tomcat/bin"    
-    export JAVA_HOME=/opt/jdk1.7.0_45    
-    echo "$ --- 1 =  $1"    
-    case $1 in    
-        startup)    
-            sh $TOMCAT_HOME/startup.sh    
-            ;;    
-        shutdown)    
-            sh $TOMCAT_HOME/shutdown.sh    
-            ;;    
-        restart)    
-            sh $TOMCAT_HOME/shutdown.sh    
-            sh $TOMCAT_HOME/startup.sh    
-            ;;    
-        *)    
-            sh $TOMCAT_HOME/startup.sh    
-            ;;    
-    esac    
-    exit 0   
+TOMCAT_HOME="/opt/tomcat/bin"    
+export JAVA_HOME=/opt/jdk1.8    
+echo "$ --- 1 =  $1"    
+case $1 in    
+    startup)    
+        sh $TOMCAT_HOME/startup.sh    
+        ;;    
+    shutdown)    
+        sh $TOMCAT_HOME/shutdown.sh    
+        ;;    
+    restart)    
+        sh $TOMCAT_HOME/shutdown.sh    
+        sh $TOMCAT_HOME/startup.sh    
+        ;;    
+    *)    
+        sh $TOMCAT_HOME/startup.sh    
+        ;;    
+esac    
+exit 0
+   
 ```
 
 2.3 添加执行权限

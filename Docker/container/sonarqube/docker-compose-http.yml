@@ -1,0 +1,35 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql:5.7.22
+    restart: always
+    container_name: mysql
+   #  ports:
+   #    - 3306:3306
+    volumes:
+      - /docker/mysql/db:/var/lib/mysql
+      - LANG=C.UTF-8
+    environment:
+      - MYSQL_ROOT_PASSWORD=sonar
+      - MYSQL_DATABASE=sonar
+      - MYSQL_USER=sonar
+      - MYSQL_PASSWORD=sonar
+    command: mysqld  --skip-ssl --character_set_server=utf8mb4 --sql_mode=""
+
+  sonar:
+     restart: always
+     image: sonarqube:alpine
+     container_name: sonar
+     depends_on:
+      - db
+     volumes:
+      - /docker/sonar/data:/opt/sonarqube/data
+      - /docker/sonar/extensions:/opt/sonarqube/extensions
+     ports:
+      - 80:9000
+      - 9092:9092
+     environment:
+      - SONARQUBE_JDBC_USERNAME=sonar
+      - SONARQUBE_JDBC_PASSWORD=sonar
+      - SONARQUBE_JDBC_URL=jdbc:mysql://db:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true

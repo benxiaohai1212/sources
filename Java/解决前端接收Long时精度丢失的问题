@@ -1,0 +1,53 @@
+## 注解或全局配置Long转String，解决前端接收时精度丢失的问题
+
+### 第一种：使用注解解决
+使用方便简单，粒度高，适用于部分字段需要单独转换的场景，灵活度高
+
+// 两种注解，选其一即可
+```
+// @JsonFormat(shape = JsonFormat.Shape.STRING)
+@JsonSerialize(using = ToStringSerializer.class)
+private Long largeId = 1332345432341123411L;
+```
+
+### 第二种：直接对SimpleModule对象配置，避免其他地方的Jackson配置被覆盖的问题
+```
+@Configuration
+public class JsonModuleConfig extends SimpleModule {
+    public JsonModuleConfig() {
+      //super(JsonModuleConfig.class.getName());
+      this.addSerializer(Long.class, ToStringSerializer.instance);
+      this.addSerializer(Long.TYPE, ToStringSerializer.instance);
+    }
+}
+```
+
+### 第三种：通过 WebMvcConfigurer 配置转换规则
+会根据扫描到的配置类顺序加载，如果匹配到第一个，则放弃后续的配置，所以自己的框架如果有配置Jackson配置的话，使用这个方法会导致原有配置被覆盖
+注意：如果项目使用了的是自己的框架，这里的配置可能会引起自己框架配置的jackson失效
+```
+@EnableWebMvc
+@Configuration
+public class WebDataConvertConfig implements WebMvcConfigurer {
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+      MappingJackson2HttpMessageConverter jackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+      ObjectMapper objectMapper = new ObjectMapper();
+      /**
+       * 序列换成json时,将所有的long变成string
+       * 因为js中得数字类型不能包含所有的java long值
+       */
+      SimpleModule simpleModule = new SimpleModule();
+      simpleModule.addSerializer(Long.class, ToStringSerializer.instance);
+      simpleModule.addSerializer(Long.TYPE, ToStringSerializer.instance);
+      simpleModule.addSerializer(BigInteger.class, ToStringSerializer.instance);
+
+      // 反序列化时忽略多余字段
+      objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+      // 注册
+      objectMapper.registerModule(simpleModule);
+      jackson2HttpMessageConverter.setObjectMapper(objectMapper);
+      converters.add(jackson2HttpMessageConverter);
+    }
+}
+```

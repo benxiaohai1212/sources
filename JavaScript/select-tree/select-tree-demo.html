@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Select-Tree</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ztree@3.5.24/css/metroStyle/metroStyle.css" />
+  </head>
+  <body>
+    <div class="select-tree col-sm-4" style="position: relative;">
+      <input type="text" class="form-control" placeholder="请点击选择" readonly />
+      <div class="dropdown-menu">
+        <input class="form-control" placeholder="输入搜索" />
+        <ul class="ztree"></ul>
+      </div>
+    </div>
+
+    <button class="btn btn-info" id="getVal">获取值</button>
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ztree@3.5.24/js/jquery.ztree.all.js"></script>
+    <script type="text/javascript" src="dist/select-tree.js"></script>
+
+    <script>
+      $(function() {
+    
+        var zNodes = [
+          { id: 1, pId: 0, name: "湖南省", open: true, chkDisabled: true },
+          { id: 101, pId: 1, name: "长沙", checked: true },
+          { id: 102, pId: 1, name: "株洲" },
+    
+          { id: 2, pId: 0, name: "湖北省", open: false, chkDisabled: true },
+          { id: 201, pId: 2, name: "武汉" },
+          { id: 206, pId: 2, name: "黄石" },
+    
+          { id: 3, pId: 0, name: "山东省" },
+          { id: 301, pId: 3, name: "济南" },
+          { id: 302, pId: 3, name: "青岛" }
+        ];
+      
+    
+        var selectTree = $(".select-tree").selectTree(zNodes, { 
+            height: 500, // 下拉选项的高度
+            checkEnable: true, // 是否出现选择框
+            chkStyle: "checkbox", // 选择框类型 checkbox、radio
+            idKey: "id", // tree对应id字段名
+            pIdKey: "pId", // tree对应父id字段名
+            separation: ",", // 取值分隔符
+            chkTyle: "checkbox" // 下拉选择类型分单选和多选 checkbox、radio 
+        });
+    
+        $("#getVal").click(function(e) {
+          alert(selectTree.getVal()); // 获取选择的值
+          e.preventDefault();
+        });
+      });
+    </script>
+  </body>
+</html>
+
+
+
+

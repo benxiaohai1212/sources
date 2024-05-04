@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7.22
+    restart: always
+    container_name: mysql
+    volumes:
+      - /docker/mysql/db:/var/lib/mysql
+      - LANG=C.UTF-8
+    environment:
+      - MYSQL_ROOT_PASSWORD=sonar
+      - MYSQL_DATABASE=sonar
+      - MYSQL_USER=sonar
+      - MYSQL_PASSWORD=sonar
+    command: mysqld  --skip-ssl --character_set_server=utf8mb4 --sql_mode=""
+
+  sonar:
+    restart: always
+    image: sonarqube:alpine
+    container_name: sonar
+    depends_on:
+      - db
+    volumes:
+      - /docker/sonar/data:/opt/sonarqube/data
+      - /docker/sonar/extensions:/opt/sonarqube/extensions
+    expose:
+      - 9000
+      - 9092
+    environment:
+      - SONARQUBE_JDBC_USERNAME=sonar
+      - SONARQUBE_JDBC_PASSWORD=sonar
+      - SONARQUBE_JDBC_URL=jdbc:mysql://db:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
+
+   # 以下是nginx反向代理服务的配置
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    restart: always
+    depends_on: 
+      - sonar
+    ports:
+      - "80:80"
+      - "443:443" # ssl 默认是443端口，因此需要将443端口映射到宿主机上
+    volumes:
+      - /docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /var/run/docker.sock:/tmp/docker.sock:ro # 将宿主机的docker.sock绑定到nginx，这样，今后添加新的站点时，nginx将会自动发现站点并重启服务
+      - /docker/certs/server.crt:/etc/nginx/certs/server.crt # 将nginx中的证书目录，映射到宿主机中
+      - /docker/certs/server.key:/etc/nginx/certs/server.key # 将nginx中的证书目录，映射到宿主机中
+
+
+# 配置一个公共外部网络来联通所有容器
+networks:
+  default:
+    external:
+      name: nginx-proxy

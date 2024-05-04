@@ -4,22 +4,22 @@
 ```sh
 sudo apt-get remove docker docker-engine docker.io
 ```
-
-### 1. Recommended extra packages for Trusty 14.04
-```sh
-$sudo apt-get update
-$sudo apt-get install linux-image-generic-lts-trusty
-$sudo reboot
-$wget -qO- https://get.docker.com/ | sh
-$sudo docker -v
-```
-
+### Recommended extra packages for Trusty 14.04
 ```sh
 sudo apt-get update
 
 sudo apt-get install \
     linux-image-extra-$(uname -r) \
     linux-image-extra-virtual
+```
+
+### 1. 安装docker
+```
+$sudo apt-get update
+$sudo apt-get install linux-image-generic-lts-trusty
+$sudo reboot
+$wget -qO- https://get.docker.com/ | sh
+$sudo docker -v
 ```
 
 ### 2. Install using the repository
@@ -60,9 +60,8 @@ sudo rm -rf /var/lib/docker
 
 首先要确认你的 Ubuntu 版本是否符合安装 Docker 的前提条件。如果没有问题，你可以通过下边的方式来安装 Docker ：
 
-    使用具有sudo权限的用户来登录你的Ubuntu。
-
-    查看你是否安装了wget
+    使用具有sudo权限的用户来登录你的Ubuntu。  
+    查看你是否安装了wget  
 
      $ which wget
 
@@ -74,8 +73,7 @@ sudo rm -rf /var/lib/docker
 
      $ wget -qO- https://get.docker.com/ | sh
 
-    系统会提示你输入sudo密码，输入完成之后，就会下载脚本并且安装Docker及依赖包。
-
+    系统会提示你输入sudo密码，输入完成之后，就会下载脚本并且安装Docker及依赖包。  
     验证 Docker 是否被正确的安装
 
      $ sudo docker run hello-world
@@ -238,6 +236,22 @@ Or
 $ apt-get upgrade docker
 ```
 
+### ERROE
+```
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.26/images/json: dial unix /var/run/docker.sock: connect: permission denied
+```
+其中第一为d代表该文件是一个文件夹  
+前三位、中三位、后三位分别代表这属主权限、属组权限、其他人权限。  
+如图，其中 第三列、第四列分别代表文件的属主、属组
+```
+sudo groupadd docker
+sudo gpasswd -a ${USER} docker
+sudo service docker restart
+newgrp - docker
+```
+ > 注意:最后一步是必须的，否则因为 groups 命令获取到的是缓存的组信息，刚添加的组信息未能生效，所以 docker images 执行时同样有错
+
+
 # install docker-compose
 ```sh
 sudo apt-get install python-pip
@@ -246,4 +260,21 @@ pip install docker-compse
 Or
 ```sh
 sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+```
+
+## 离线安装docker-ce
+
+1】. 准备离线准备
+```
+docker-ce (https://download.docker.com/linux/ubuntu/dists/trusty/pool/stable/amd64/)
+依赖包如下：
+libltdl7 (http://archive.ubuntu.com/ubuntu/pool/main/libt/libtool/libltdl7_2.4.2-1.7ubuntu1_amd64.deb)
+libgcrypt20 (http://archive.ubuntu.com/ubuntu/pool/universe/libg/libgcrypt20/libgcrypt20_1.6.1-2ubuntu1_amd64.deb)
+libsystemd-journal0 (http://archive.ubuntu.com/ubuntu/pool/main/s/systemd/libsystemd-journal0_204-5ubuntu20_amd64.deb)
+```
+> 下载docker-ce依赖包网址：`https://pkgs.org/`
+
+2】. 安装
+```
+dpkg -i *.deb
 ```

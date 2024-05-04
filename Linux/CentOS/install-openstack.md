@@ -671,3 +671,29 @@ export OS_TENANT_NAME=admin
 export OS_REGION_NAME=RegionOne
 [root@localhost ~]# 
 ```
+如果出现如下错误：
+```
+ERROR:root:Failed to load plugin from file ssl_001.py
+ERROR:root:Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/packstack/installer/run_setup.py", line 923, in loadPlugins
+    moduleobj = __import__(moduleToLoad)
+  File "/usr/lib/python2.7/site-packages/packstack/plugins/ssl_001.py", line 20, in <module>
+    from OpenSSL import crypto
+  File "/usr/lib/python2.7/site-packages/OpenSSL/__init__.py", line 8, in <module>
+    from OpenSSL import rand, crypto, SSL
+  File "/usr/lib/python2.7/site-packages/OpenSSL/crypto.py", line 13, in <module>
+    from cryptography.hazmat.primitives.asymmetric import dsa, rsa
+  File "/usr/lib64/python2.7/site-packages/cryptography/hazmat/primitives/asymmetric/rsa.py", line 14, in <module>
+    from cryptography.hazmat.backends.interfaces import RSABackend
+  File "/usr/lib64/python2.7/site-packages/cryptography/hazmat/backends/__init__.py", line 7, in <module>
+    import pkg_resources
+ImportError: No module named pkg_resources
+
+ERROR:root:Traceback (most recent call last):
+  File "/usr/lib/python2.7/site-packages/packstack/installer/run_setup.py", line 988, in main
+    loadPlugins()
+  File "/usr/lib/python2.7/site-packages/packstack/installer/run_setup.py", line 931, in loadPlugins
+    raise Exception("Failed to load plugin from file %s" % item)
+Exception: Failed to load plugin from file ssl_001.py
+```
+执行`curl https://bootstrap.pypa.io/ez_setup.py | python`解决，引用:https://stackoverflow.com/questions/7446187/no-module-named-pkg-resources

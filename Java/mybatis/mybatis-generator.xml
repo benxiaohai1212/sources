@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <!--驱动包的路径-->
+
+    <!-- 一个数据库一个context,defaultModelType="flat" 大数据字段，不分表 -->
+    <context id="MysqlTables" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表；一般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖 -->
+        <property name="autoDelimitKeywords" value="true"/>
+
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="utf-8"/>
+
+        <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+
+        <!-- 格式化XML代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+        <!-- 生成的pojo，将implements Serializable-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+
+        <!--注释-->
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!--数据库连接-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/demo"
+                        userId="root"
+                        password="mysql"/>
+
+        <!--
+          默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer
+              true，把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal
+          -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="cn.net.asiacom.account.pojo" targetProject="src/main/java">
+            <!--是否对model添加构造函数-->
+            <property name="constructorBased" value="false"/>
+            <!--是否允许子包-->
+            <property name="enableSubPackages" value="true"/>
+            <!--建立的model对象是否不可变，也就是生成的model没有setter方法-->
+            <property name="immutable" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格  -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--生成映射文件mapper.xml存放位置-->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources/mybatis/">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--生成Mapper类存放位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.net.asiacom.account.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--生成与表对应的类名-->
+        <table schema="vmware" tableName="user" domainObjectName="User">
+            <!--属性useActualColumnNames为true,那么生成的对象字段就跟表一样-->
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+    </context>
+
+</generatorConfiguration>

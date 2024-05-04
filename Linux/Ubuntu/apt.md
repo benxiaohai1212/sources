@@ -10,10 +10,10 @@
    deb file:/media/cdrom etch main  
    它会在/mnt/iso的dists下寻找Packages.gz，并在pool下寻找包文件  
 
-### (3)apt-cache stats               显示数据源中包的统计信息 
+### (3)apt-cache stats            显示数据源中包的统计信息 
 
-   apt-cache search  vim         按关键字查找软件包  
-   apt-cache show vim-common     这个包的详细信息  
+   apt-cache search  vim          按关键字查找软件包  
+   apt-cache show vim-common      这个包的详细信息  
    apt-cache depends vim-common   依赖，冲突，替换的包  
    apt-cache rdepends vim-common  反向依赖  
 
@@ -39,3 +39,6 @@
    apt-get build-dep lynx         编译依赖软件包  
 
 ### (8)必杀技：apt-get -f install     纠正安装依赖  
+
+### 使用`apt-rdepends`检查软件包依赖关系   
+### 使用`apt-file seach filename` 查看依赖文件   
