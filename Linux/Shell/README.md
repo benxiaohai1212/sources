@@ -1,3 +1,15 @@
+Bash是许多Linux平台的内定Shell，除bash外，还有许多传统UNIX上用的Shell，像tcsh、csh、ash、bsh、ksh等等。
+
+GNU/Linux 操作系统中的 /bin/sh 本是 bash的符号链接，但鉴于 bash 过于复杂，有人把 bash 从 NetBSD 移植到 Linux 并更名为 dash 并将 /bin/sh 指向它，以获得更快的脚本执行速度。Dash Shell 比 Bash Shell 小的多，符合POSIX标准。
+
+Debian和Ubuntu中，/bin/sh默认已经指向dash，这是一个不同于bash的shell，它主要是为了执行脚本而出现，而不是交互，它速度更快，但功能相比bash要少很多，语法严格遵守POSIX标准。
+要知道自己的/bin/sh指向何种解释器，可以用 ls /bin/sh -al 命令查看。
+
+解决办法
+
+修改默认的sh，可以采用命令sudo dpkg-reconfigure dash。在配置菜单中选no
+
+
 |         | [[]]   | []     |
 |---------|--------|--------|
 | < 排序比较  | 支持     | 不支持    |
